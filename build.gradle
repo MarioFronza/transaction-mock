@@ -5,8 +5,12 @@ plugins {
 }
 
 group = 'com.github'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '15'
+
+bootJar {
+    baseName = 'transaction'
+    version =  '0.0.1'
+}
 
 repositories {
 	mavenCentral()
@@ -14,6 +18,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.jayway.jsonpath:json-path:2.4.0'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
