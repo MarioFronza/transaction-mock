@@ -2,6 +2,8 @@ package com.github.transactionmock.transactions;
 
 import com.github.transactionmock.exceptions.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +22,14 @@ public class TransactionController {
     }
 
     @GetMapping("/{id}/transactions/{year}/{month}")
-    public List<Transaction> getAll(
+    public ResponseEntity getAll(
             @PathVariable int id,
             @PathVariable int year,
             @PathVariable int month) {
         try {
-            return this.transactionService.getAllTransactions(id, month, year);
+            return new ResponseEntity<>(this.transactionService.getAllTransactions(id, month, year), HttpStatus.OK);
         } catch (ApiException e) {
-            e.printStackTrace();
-            return null;
+            return new ResponseEntity<>(e.getMessage(), e.getHttpStatus());
         }
 
     }

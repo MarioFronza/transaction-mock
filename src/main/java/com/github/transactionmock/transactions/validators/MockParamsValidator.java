@@ -11,14 +11,14 @@ public class MockParamsValidator implements ParamsValidator {
     @Override
     public void validateId(int id) throws ApiException {
         if (id < MIN_ID || id > MAX_ID) {
-            throw new ApiException("Invalid id value");
+            throw new ApiException("Invalid id parameter");
         }
     }
 
     @Override
     public void validateMonth(int month) throws ApiException {
         if (month < MIN_MONTH || month > MAX_MONTH) {
-            throw new ApiException("Invalid id value");
+            throw new ApiException("Invalid month parameter");
         }
     }
 

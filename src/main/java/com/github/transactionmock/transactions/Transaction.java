@@ -35,4 +35,8 @@ public class Transaction {
     public boolean isDuplicated() {
         return duplicated;
     }
+
+    public void setDuplicated(boolean duplicated) {
+        this.duplicated = duplicated;
+    }
 }

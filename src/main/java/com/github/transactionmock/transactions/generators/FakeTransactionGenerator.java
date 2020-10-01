@@ -40,6 +40,7 @@ public class FakeTransactionGenerator implements TransactionGenerator {
                 generateValue(),
                 false
         );
+        setDuplicated(transaction);
         this.transactions.add(transaction);
     }
 
@@ -67,7 +68,10 @@ public class FakeTransactionGenerator implements TransactionGenerator {
         return this.generator.nextInt(MAX_VALUE - MIN_VALUE) + MIN_VALUE;
     }
 
-    private void generateDuplicated() {
+    private void setDuplicated(Transaction currentTransaction) {
+        if (transactions.contains(currentTransaction)) {
+            currentTransaction.setDuplicated(true);
+        }
     }
 
 }
