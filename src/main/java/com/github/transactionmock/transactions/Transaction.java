@@ -9,6 +9,7 @@ public class Transaction {
     private int valor;
     private boolean duplicated;
 
+
     public Transaction(@JsonProperty("descricao") String descricao,
                        @JsonProperty("data") long data,
                        @JsonProperty("valor") int valor,
