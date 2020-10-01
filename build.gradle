@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github'
-sourceCompatibility = '15'
+sourceCompatibility = '14'
 
 bootJar {
     baseName = 'transaction'
