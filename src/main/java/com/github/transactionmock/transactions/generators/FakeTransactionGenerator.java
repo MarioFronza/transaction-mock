@@ -19,27 +19,37 @@ public class FakeTransactionGenerator implements TransactionGenerator {
     private Random generator;
     private int month;
     private int year;
+    private boolean alreadyDuplicated;
 
     @Override
     public List<Transaction> generateTransactions(int id, int month, int year) {
         this.transactions = new ArrayList<>();
+        this.alreadyDuplicated = false;
         this.month = month;
         this.year = year;
         this.generator = new Random(id + month + year);
         int numberOfTransactions = this.generator.nextInt(MAX_MONTH - MIN_MONTH) + MIN_MONTH;
         for (int i = 0; i < numberOfTransactions; i++) {
-            createAndAddTransaction();
+            createTransaction();
         }
         return this.transactions;
     }
 
-    private void createAndAddTransaction() {
+    private void createTransaction() {
         Transaction transaction = new Transaction(
                 generateDescription(),
                 generateDate(),
                 generateValue(),
                 false
         );
+      checkDuplicatedAndAddTransaction(transaction);
+    }
+
+    private void checkDuplicatedAndAddTransaction(Transaction transaction){
+          if(month % 2 == 0 && !alreadyDuplicated){
+            this.transactions.add(transaction);
+            alreadyDuplicated = true;
+        }
         setDuplicated(transaction);
         this.transactions.add(transaction);
     }

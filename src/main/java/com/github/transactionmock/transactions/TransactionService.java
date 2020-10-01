@@ -22,5 +22,4 @@ public class TransactionService {
         return fakeTransactionGenerator.generateTransactions(id, month, year);
     }
 
-
 }
